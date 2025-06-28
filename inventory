@@ -1,0 +1,95 @@
+# This is the AAP enterprise installer inventory file
+# Please consult the docs if you're unsure what to add
+# For all optional variables please consult the Red Hat documentation:
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/rpm_installation
+
+# This section is for your AAP Gateway host(s)
+# -----------------------------------------------------
+[automationgateway]
+192.168.190.131 ansible_user=mauriciosinni ansible_ssh_private_key_file=~/.ssh/id_ed25519
+
+# This section is for your AAP Controller host(s)
+# -----------------------------------------------------
+[automationcontroller]
+192.168.190.128 node_type=control
+
+[automationcontroller:vars]
+peers=execution_nodes
+
+# This section is for your AAP Execution host(s)
+# -----------------------------------------------------
+[execution_nodes]
+192.168.190.130 ansible_user=mauriciosinni ansible_ssh_private_key_file=~/.ssh/id_ed25519
+
+# This section is for your AAP Automation Hub host(s)
+# -----------------------------------------------------
+[automationhub]
+192.168.190.129
+
+# This section is for your AAP EDA Controller host(s)
+# -----------------------------------------------------
+[automationedacontroller]
+192.168.190.130
+
+[redis]
+192.168.190.129
+
+[all:vars]
+redis_requirepass='q1w2e3r4'
+redis_mode=standalone
+ansible_user=mauriciosinni
+ansible_become=true
+ansible_become_method=sudo
+ansible_become_password=Rm@31211
+ansible_ssh_private_key_file=~/.ssh/id_rsa
+automationhub_pg_same_as_controller=True
+automationhub_pg_host=192.168.190.128
+automationedacontroller_pg_same_as_controller=true
+automationedacontroller_pg_host=192.168.190.128
+automationgateway_pg_same_as_controller=true
+automationgateway_pg_host=192.168.190.128
+automationgateway_pg_database=automationgateway
+automationgateway_pg_username=automationgateway_userdb
+automationgateway_pg_password=q1w2e3r4
+
+
+# Common variables
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/rpm_installation/appendix-inventory-files-vars#ref-general-inventory-variables
+# -----------------------------------------------------
+
+# AAP Gateway
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/rpm_installation/appendix-inventory-files-vars#ref-gateway-variables
+# -----------------------------------------------------
+automationgateway_admin_password=q1w2e3r4
+automationgateway_pg_host=192.168.190.128
+automationgateway_pg_database=automationgateway
+automationgateway_pg_username=automationgateway_userdb
+automationgateway_pg_password=q1w2e3r4
+
+# AAP Controller
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/rpm_installation/appendix-inventory-files-vars#ref-controller-variables
+# -----------------------------------------------------
+admin_password=q1w2e3r4
+pg_host=192.168.190.128
+pg_database=awx
+pg_username=awx_dbuser
+pg_password=q1w2e3r4
+
+# AAP Automation Hub
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/rpm_installation/appendix-inventory-files-vars#ref-hub-variables
+# -----------------------------------------------------
+automationhub_admin_password=q1w2e3r4
+automationhub_pg_host=192.168.190.128
+automationhub_pg_database=automationhub
+automationhub_pg_username=automationhub_dbuser
+automationhub_pg_password=q1w2e3r4
+
+# AAP EDA Controller
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/rpm_installation/appendix-inventory-files-vars#event-driven-ansible-controller
+# -----------------------------------------------------
+automationedacontroller_admin_password=q1w2e3r4
+automationedacontroller_pg_host=192.168.190.128
+automationedacontroller_pg_database=eda
+automationedacontroller_pg_username=eda_dbuser
+automationedacontroller_pg_password=q1w2e3r4
+

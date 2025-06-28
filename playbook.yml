@@ -3,6 +3,7 @@
   become: yes
   vars:
     mysql_root_password: "q1w2e3r4"
+    ansible_user: mauriciosinni
   tasks:
     - name: Copiar RPM do repositório MySQL
       ansible.builtin.copy:

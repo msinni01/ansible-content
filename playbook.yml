@@ -1,0 +1,26 @@
+- name: Instala MySQL 8.0.31 via RPM local
+  hosts: mysql_vm
+  become: yes
+  vars:
+    mysql_root_password: "q1w2e3r4"
+  tasks:
+    - name: Copiar RPM do repositório MySQL
+      ansible.builtin.copy:
+        src: files/mysql80-community-release-el9-1.noarch.rpm
+        dest: /tmp/mysql-release.rpm
+
+    - name: Instalar pacote do repositório MySQL
+      ansible.builtin.yum:
+        name: /tmp/mysql-release.rpm
+        state: present
+
+    - name: Instalar mysql-server
+      ansible.builtin.yum:
+        name: mysql-server
+        state: present
+
+    - name: Iniciar e habilitar MySQL
+      ansible.builtin.service:
+        name: mysqld
+        state: started
+        enabled: true

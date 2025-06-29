@@ -10,6 +10,11 @@
         src: files/mysql80-community-release-el9-1.noarch.rpm
         dest: /tmp/mysql-release.rpm
 
+   - name: Importa a chave GPG do MySQL
+  rpm_key:
+    state: present
+    key: https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+
     - name: Instalar pacote do repositório MySQL
       ansible.builtin.yum:
         name: /tmp/mysql-release.rpm

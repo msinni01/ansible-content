@@ -14,7 +14,7 @@
       ansible.builtin.yum:
         name: /tmp/mysql-release.rpm
         state: present
-        disable_gpg_check: yes
+        key: https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
     - name: Instalar mysql-server
       ansible.builtin.yum:

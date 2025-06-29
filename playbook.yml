@@ -4,20 +4,20 @@
   vars:
     mysql_root_password: "q1w2e3r4"
     ansible_user: mauriciosinni
+
   tasks:
     - name: Copiar RPM do repositório MySQL
       ansible.builtin.copy:
         src: files/mysql80-community-release-el9-1.noarch.rpm
         dest: /tmp/mysql-release.rpm
-        
+
     - name: Instalar pacote do repositório MySQL
       ansible.builtin.yum:
         name: /tmp/mysql-release.rpm
         state: present
-        key: https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 
-     - name: Importar chaves GPG do MySQL
-      rpm_key:
+    - name: Importar chaves GPG do MySQL
+      ansible.builtin.rpm_key:
         state: present
         key: "{{ item }}"
       loop:

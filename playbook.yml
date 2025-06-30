@@ -10,19 +10,22 @@
       ansible.builtin.copy:
         src: files/mysql80-community-release-el9-1.noarch.rpm
         dest: /tmp/mysql-release.rpm
+        mode: '0644'
 
     - name: Instalar pacote do repositório MySQL
       ansible.builtin.yum:
         name: /tmp/mysql-release.rpm
         state: present
 
-    - name: Importar chaves GPG do MySQL
-      ansible.builtin.rpm_key:
-        state: present
-        key: "{{ item }}"
-      loop:
-        - https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
-        - https://repo.mysql.com/RPM-GPG-KEY-mysql
+    - name: Importar chave GPG do MySQL (2022)
+      ansible.builtin.command: rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+      args:
+        warn: false
+
+    - name: Importar chave GPG do MySQL (legacy)
+      ansible.builtin.command: rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql
+      args:
+        warn: false
 
     - name: Instalar mysql-server
       ansible.builtin.yum:

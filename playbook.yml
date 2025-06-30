@@ -8,25 +8,25 @@
   tasks:
     - name: Copiar RPM do repositório MySQL
       ansible.builtin.copy:
-        src: files/mysql80-community-release-el9-1.noarch.rpm
-        dest: /home/mauriciosinni/mysql-aap/mysql-release.rpm
+        src: /home/mauriciosinni/ansible-content/files/mysql80-community-release-el9-1.noarch.rpm
+        dest: /home/mauriciosinni/ansible-content/file/smysql-release.rpm
         mode: '0644'
 
-    - name: Instalar pacote do repositório MySQL
+    - name: Instalar pacote do repositório /MySQL
       ansible.builtin.yum:
-        name: /home/mauriciosinni/mysql-aap/mysql-release.rpm
+        name: /home/mauriciosinni/ansible-content/files/mysql-release.rpm
         state: present
 
     - name: Copiar chave GPG do MySQL (2022)
       ansible.builtin.copy:
         src: files/RPM-GPG-KEY-mysql-2022
-        dest: /home/mauriciosinni/mysql-aap/RPM-GPG-KEY-mysql-2022
+        dest: /home/mauriciosinni/ansible-content/files/RPM-GPG-KEY-mysql-2022
         mode: '0644'
 
     - name: Copiar chave GPG do MySQL (legacy)
       ansible.builtin.copy:
         src: files/RPM-GPG-KEY-mysql
-        dest: /home/mauriciosinni/mysql-aap/RPM-GPG-KEY-mysql
+        dest: /home/mauriciosinni/ansible-content/files/RPM-GPG-KEY-mysql
         mode: '0644'
 
     - name: Importar chave GPG (2022)

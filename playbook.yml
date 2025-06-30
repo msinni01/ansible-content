@@ -17,29 +17,7 @@
         name: /home/mauriciosinni/ansible-content/files/mysql-release.rpm
         state: present
 
-    - name: Copiar chave GPG do MySQL (2022)
-      ansible.builtin.copy:
-        src: files/RPM-GPG-KEY-mysql-2022
-        dest: /home/mauriciosinni/ansible-content/files/RPM-GPG-KEY-mysql-2022
-        mode: '0644'
-
-    - name: Copiar chave GPG do MySQL (legacy)
-      ansible.builtin.copy:
-        src: files/RPM-GPG-KEY-mysql
-        dest: /home/mauriciosinni/ansible-content/files/RPM-GPG-KEY-mysql
-        mode: '0644'
-
-    - name: Importar chave GPG (2022)
-      ansible.builtin.command: rpm --import /home/mauriciosinni/mysql-aap/RPM-GPG-KEY-mysql-2022
-      args:
-        warn: false
-
-    - name: Importar chave GPG (legacy)
-      ansible.builtin.command: rpm --import /home/mauriciosinni/mysql-aap/RPM-GPG-KEY-mysql
-      args:
-        warn: false
-
-    - name: Instalar mysql-server
+        - name: Instalar mysql-server
       ansible.builtin.yum:
         name: mysql-server
         state: present

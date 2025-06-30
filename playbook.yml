@@ -6,11 +6,6 @@
     ansible_user: mauriciosinni
 
   tasks:
-    - name: Copiar RPM do repositório MySQL
-      ansible.builtin.copy:
-        src: /home/mauriciosinni/ansible-content/files/mysql80-community-release-el9-1.noarch.rpm
-        dest: /home/mauriciosinni/ansible-content/file/smysql-release.rpm
-        mode: '0644'
 
     - name: Instalar pacote do repositório /MySQL
       ansible.builtin.yum:

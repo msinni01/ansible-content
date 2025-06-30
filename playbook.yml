@@ -9,12 +9,12 @@
     - name: Copiar RPM do repositório MySQL
       ansible.builtin.copy:
         src: files/mysql80-community-release-el9-1.noarch.rpm
-        dest: /tmp/mysql-release.rpm
+        dest: /home/mauriciosinni/mysql-aap/mysql-release.rpm
         mode: '0644'
 
     - name: Instalar pacote do repositório MySQL
       ansible.builtin.yum:
-        name: /tmp/mysql-release.rpm
+        name: /home/mauriciosinni/mysql-aap/mysql-release.rpm
         state: present
 
     - name: Importar chave GPG do MySQL (2022)

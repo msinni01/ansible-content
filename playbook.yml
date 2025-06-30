@@ -43,6 +43,7 @@
       ansible.builtin.yum:
         name: mysql-server
         state: present
+         disable_gpg_check: true
 
     - name: Iniciar e habilitar MySQL
       ansible.builtin.service:

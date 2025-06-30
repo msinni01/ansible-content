@@ -12,11 +12,11 @@
         name: /home/mauriciosinni/ansible-content/files/mysql-release.rpm
         state: present
 
-        - name: Instalar mysql-server
+    - name: Instalar mysql-server (PoC, sem verificação GPG)
       ansible.builtin.yum:
         name: mysql-server
         state: present
-         disable_gpg_check: true
+        disable_gpg_check: true
 
     - name: Iniciar e habilitar MySQL
       ansible.builtin.service:

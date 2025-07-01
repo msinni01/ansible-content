@@ -1,5 +1,5 @@
 - name: Instala MySQL 8.0.31 via RPM local
-  hosts: 192.168.190.132
+  hosts: 192.168.190.132, 192.168.190.133
   become: yes
   vars:
     mysql_root_password: "q1w2e3r4"

@@ -12,6 +12,11 @@
         dest: /tmp/mysql-release.rpm
         mode: '0644'
 
+    - name: Importa a chave GPG do MySQL
+      ansible.builtin.rpm_key:
+       state: present
+       key: https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+
     - name: Instalar pacote do repositório MySQL
       ansible.builtin.yum:
         name: /tmp/mysql-release.rpm
